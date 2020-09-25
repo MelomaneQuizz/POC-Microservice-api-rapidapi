@@ -1,5 +1,11 @@
 import requests
 import json
+import os
+from dotenv import load_dotenv
+from pathlib import Path  # Python 3.6+ only
+
+env_path = Path('..') / '.env'
+load_dotenv(dotenv_path=env_path)
 
 
 def get_content(list_data):
@@ -18,9 +24,8 @@ def get_content(list_data):
 
 
 if __name__ == "__main__":
-
     headers = {
-        'x-rapidapi-host': "shazam.p.rapidapi.com",
-        'x-rapidapi-key': "f60c19b24cmsh994842bff7b8d81p1ed4b9jsn1842f67fb6ee"
+        'x-rapidapi-host': os.getenv("RAPIDAPI_HOST"),
+        'x-rapidapi-key': os.getenv("RAPIDAPI_KEY")
     }
     get_content(['IAM'])
